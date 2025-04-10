@@ -1,0 +1,636 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  margin-top: -5px;
+}
+
+/*background of website*/
+
+body {
+  background: url("https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/black/Photoroom_black_background_extremely_fine_texture_only_black_co_b1c41896-a1df-4f85-b9e8-f9da76bd9ba9.jpg")fixed;
+  background-size: cover;
+  background-repeat: repeat;
+  color: white;
+  margin-top: 0px;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+}
+
+/*navigation Bar*/
+
+header {
+  background: black;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 186, 255, 0.7);
+}
+
+.hamburger {
+  display: none;
+  position: absolute;
+  font-size: 1.5rem;
+  cursor: pointer;
+  right: 20px;
+}
+/*NAVBAR*/
+
+.navbar {
+  display: flex;
+  justify-content: center; /* Centers the list horizontally */
+  align-items: center; /* Aligns items vertically */
+  width: 100%; /* Ensure it spans the full width */
+  background: black; /* Keep dark theme */
+  padding: 10px 0;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+/* Hamburger Menu */
+
+/*----------CONTAINER--------*/
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  height: 80vh;
+  position: relative;
+  margin-top: 60px;
+}
+.image {
+  position: absolute;
+  top: -20%;
+  left: 0%;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Optional dark overlay */
+  z-index: 1;
+}
+
+.main .content {
+  z-index: 2;
+  max-width: 600px;
+  padding-left: 70px;
+}
+
+.main h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.main .highlight {
+  color: red;
+  font-weight: bold;
+}
+
+.main .name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 0.2rem;
+  position: relative;
+}
+
+
+/* Parallax Effect */
+#paraimg {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.para-img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: cover; /* Ensures proper scaling */
+  position: absolute;
+  transform: translateY(var(--scrollY));
+}
+#paraimg::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+}
+/* Work Section Styling */
+.work-section {
+  background: rgb(255, 255, 255);
+  height: auto;
+  z-index: 2;
+}
+.work-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  text-align: center;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Adjusts column count dynamically */
+  grid-auto-rows: auto; /* Maintains aspect ratio */
+  gap: 5px;
+  width: 70%;
+  height: auto;
+  padding: 20px;
+  margin-left: 15%;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* Ensures images fill their space */
+  border-radius: 2px;
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 2px 0px black;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.gallery img.tall {
+  grid-row: span 3; /* Allows taller images */
+}
+
+/* Lightbox Styling */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  margin-top: 60px;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 5px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.lightbox-img {
+  max-width: 90%; /* Increase maximum width */
+  max-height: 80vh; /* Increase maximum height while keeping viewport fit */
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease-in-out;
+  margin-top: -50px;
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Ensures full height */
+  overflow: hidden;
+}
+
+.parallax-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures it fills the space */
+  margin-top: -500px;
+}
+.video-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center */
+  align-items: flex-start;     /* horizontally center */
+  text-align: center;
+  color: white;
+  z-index: 2;
+  padding: 60px;
+}
+.video-text h2 {
+  font-family: 'monserrat','Futura','Avenir Next', sans-serif;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+.video-text a {
+  text-decoration: none;
+  color: yellow;
+  font-family: 'monserrat','Futura','Avenir Next', sans-serif;
+  font-weight: 500;
+  border-bottom: 1px solid yellow;
+  letter-spacing: 1px;
+  margin-left: 40px;
+}
+.video-text a:hover{
+  color: rgb(205, 205, 29);
+  border-bottom:  1px solid  rgb(205, 205, 29) ;
+}
+/*---CONTACT SECTION---*/
+#contact {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255,);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+#contact h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+#contact p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgb(255, 255, 255);
+  background: transparent;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.contact-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+.contact-form button {
+  padding: 12px;
+  background:transparent;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(252, 252, 252);
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+
+
+.social-icons1 {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.social-icons1 a {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  transition: color 0.3s;
+  padding: 3px;
+}
+
+.social-icons1 a.instagram:hover {
+  color: #e4405f;
+  transform: scale(1.1);
+  transition: 0.3ms ease-in-out ;
+}
+.social-icons1 a.youtube:hover {
+  color: #ff0000;
+  transform: scale(1.1);
+  transition: 0.3ms ease-in-out ;
+}
+.social-icons1 a.linkedin:hover {
+  color: #0077b5;
+  transform: scale(1.1);
+  transition: 0.3ms ease-in-out ;
+}
+.social-icons1 a.x-twitter:hover {
+  color: rgb(255, 255, 255);
+  transform: scale(1.1);
+  transition: 0.3ms ease-in-out ;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  #paraimg {
+    height: 40vh; /* Adjust for tablets */
+  }
+  .para-img {
+    width: 130%;
+    height: auto;
+    margin-top: -340px;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 30vh; /* Ensures full height */
+    overflow: hidden;
+  }
+  .parallax-video {
+    width: 120%;
+    height: auto;
+    object-fit: cover; /* Ensures it fills the space */
+    margin-top: -380px;
+  }
+}
+
+/*RESPONSIVE DESIGN*/
+
+@media (max-width: 768px) {
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    background: black;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0px 2px 5px rgb(0, 186, 255);
+    height: 43vh;
+  }
+
+  .navbar ul.show {
+    display: flex;
+  }
+  .navbar ul li {
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+    right: 20px;
+  }
+  .navbar ul li a {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .hamburger {
+    display: inline;
+    right: 10px;
+  }
+  .main{
+    margin-top: 60px;
+    height: 40vh;
+  }
+  .image{
+    width: 100%;
+    height: 50vh;
+  }
+  #paraimg {
+    height: 25vh; /* Smaller height for mobile */
+  }
+  .para-img {
+    object-fit: cover; /* Ensures image covers the div */
+    height: auto;
+    width: 140%;
+    margin-top: 0px;
+  }
+  .content {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+  .social-icons a {
+    font-size: 0.9rem;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .work {
+    margin-top: 10px;
+    background: rgb(0, 0, 0, 0.4);
+  }
+  .gallery {
+    width: 100%;
+    grid-template-columns: repeat(2,1fr ); /* Adjusts column count dynamically */
+    margin: 0%;
+  }
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem; /* Reduce close button size */
+  }
+
+  .gallery-item img {
+    width: 100%;
+    gap: 5px;
+  }
+  
+  .overlay {
+    padding: 0px;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 30vh; /* Ensures full height */
+    display: flex;
+    overflow: hidden;
+    }
+  .parallax-video {
+    position: absolute;
+    width: 140%;
+    height: auto;
+    object-fit: cover;
+    transform: translateY(0);
+    margin-top: -200px;
+    
+  }
+  .video-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center */
+    align-items: flex-start;     /* horizontally center */
+    text-align: center;
+    color: white;
+    z-index: 2;
+    padding: 10px;  
+  }
+  .video-text h2{
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    font-family: 'raleway','Avenir','Futura',sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-left: 5px;
+  }
+  .video-text a {
+    font-size: 0.4rem;
+    text-decoration: none;
+    color: yellow;
+    font-family: 'monserrat','Futura','Avenir Next', sans-serif;
+    font-weight: 700;
+    border-bottom: 1px solid yellow;
+    letter-spacing: 1px;
+    margin-left: 20px;
+  }
+  .video-text a:hover{
+    color: yellow;
+    border-bottom:  1px solid yellow ;
+  }
+  #contact {
+    background: rgb(0, 0, 0,0.5);
+    color: rgb(255, 255, 255);
+    padding: 40px 0px;
+    text-align: center;
+  }
+  
+  .contact-container {
+    max-width: 300px;
+    box-shadow: 1px 1px 5px 0.5px rgba(0, 217, 255, 0.7);
+    padding: 20px 20px;
+    background: rgb(0, 0, 0, 0.2);
+  }
+  
+  #contact h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  #contact p {
+    font-size: 0.7rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .contact-form textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .contact-form button {
+    padding: 12px;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+  }
+  
+  .contact-form button:hover {
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+  .social-icons1 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+  }
+  
+  .social-icons1 a {
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+}

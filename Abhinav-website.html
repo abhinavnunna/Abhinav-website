@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Abhinav-website.css" />
+  <script src="Abhinav-website.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- GSAP & ScrollSmoother -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
+
+  <title>Abhi</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+    }
+
+    #typewriter {
+      color: rgb(255, 0, 0);
+      /* Change color here */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="mainContainer" id="smooth-wrapper">
+    <div class="smooth-content" id="smooth-content">
+      <header class="logo">
+        <img src="./Images/abhi.png" alt=" Abhi logo" />
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+        <nav class="navbar">
+          <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#work">Work</a></li>
+            <li>
+              <a href="#travel-films">Travel Films</a>
+            </li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section id="home" class="main">
+        <img src="Images/gimbal.jpg" alt="background" class="image">
+        <div class="overlay"></div>
+        <div class="content">
+          <h1>I'm a <span id="typewriter"></span></h1>
+          <h3 class="name">Abhinav Nunna</h3>
+        </div>
+      </section>
+      
+      <section id="paraimg">
+        <img class="para-img" src="./Images/DSC02301.jpg" data-speed="0.8" />
+      </section>
+
+      <section id="work" class="work-section">
+        <h2>My Work</h2>
+        <div class="gallery">
+          <img src="Images/kalash visarjan.jpg" loading="lazy" alt="work 1" />
+          <img src="Images/holi.jpg" loading="lazy" alt="work 2" />
+          <img src="Images/moon.jpg" loading="lazy" alt="work 3" />
+          <img src="Images/college.jpg" loading="lazy" alt="work 4" />
+          <img src="Images/gimbal 1.jpg" loading="lazy" alt="work 5" />
+          <img src="Images/theyyam (2).jpg" loading="lazy" alt="work 6" class="tall" />
+          <img src="Images/chennai.jpg" loading="lazy" alt="work 7" class="tall" />
+          <img src="Images/adiyogi.jpg" loading="lazy" alt="work 8" />
+          <img src="images/dakshin.jpg" loading="lazy" alt="work 9" />
+          <img src="Images/DSC00249.jpg" loading="lazy" alt="work 10" />
+          <div id="lightbox" class="lightbox">
+            <span class="close"></span>
+            <img class="lightbox-img" id="lightbox-img" />
+          </div>
+        </div>
+      </section>
+      <section id="travel-films">
+        <div class="video-container">
+          <video class="parallax-video" autoplay muted loop>
+            <source src="Images/Adjustment Layer.mp4" type="video/mp4" />
+          </video>
+          <div class="video-text">
+            <h2>YOUTUBE</h2>
+            <a href="https://www.youtube.com/@abhinavnunna">SEE MORE VIDS &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <section id="contact">
+        <div class="contact-container">
+          <h2>Contact Me</h2>
+          <p>Let's work together! Fill out the form or reach out via email.</p>
+
+          <form action="https://formsubmit.co/abhinavnunna77@gmail.com" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="social-icons1">
+          <a href="https://www.youtube.com/@abhinavnunna" class="youtube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.instagram.com/abhinavnunna/" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/abhinav-nunna-b24912210/" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" class="x-twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </section>
+
+      <!--Hamburger-->
+      <script>
+        const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.navbar ul');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+
+      </script>
+
+      <!--Typewriting effect-->
+
+      <script>
+        var typed = new Typed("#typewriter", {
+          strings: [" Photographer", "Film maker", "Video Editor"],
+          typeSpeed: 70,
+          backSpeed: 50,
+          loop: true,
+        });
+      </script>
+      <script>
+        document.querySelectorAll(".navbar ul li a").forEach((link) => {
+          link.addEventListener("click", () => {
+            document.querySelector(".navbar ul").classList.remove("show");
+          });
+        });
+      </script>
+      <!--parallax effect-->
+
+      <script>
+        window.addEventListener("scroll", function () {
+          let parallax = document.querySelector(".para-img");
+          let scrollPosition = window.scrollY;
+
+          window.addEventListener("scroll", () => {
+            document.documentElement.style.setProperty(
+              "--scrollY",
+              window.scrollY * 0.3 + "px"
+            );
+          });
+        });
+      </script>
+      <script>
+        window.addEventListener("scroll", () => {
+  let scrollPosition = window.scrollY;
+  let parallaxVideo = document.querySelector(".parallax-video");
+
+  if (!parallaxVideo) return; // Prevent errors if element is missing
+
+  // Reduce parallax effect on small screens
+  let parallaxSpeed = window.innerWidth < 768 ? 0.1 : 0.2;
+
+  // Apply smooth parallax effect
+  requestAnimationFrame(() => {
+    parallaxVideo.style.transform = `translateY(${scrollPosition * parallaxSpeed}px)`;
+  });
+});
+
+      </script>
+      <script>
+        if (window.innerWidth > 768) {
+          gsap.registerPlugin(ScrollSmoother);
+
+          ScrollSmoother.create({
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 1.2,
+            effects: true // this enables data-speed parallax
+          });
+        }
+      </script>
+
+
+    </div>
+</body>
+
+</html>
